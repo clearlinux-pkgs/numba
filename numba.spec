@@ -4,7 +4,7 @@
 #
 Name     : numba
 Version  : 0.38.1
-Release  : 15
+Release  : 16
 URL      : http://pypi.debian.net/numba/numba-0.38.1.tar.gz
 Source0  : http://pypi.debian.net/numba/numba-0.38.1.tar.gz
 Summary  : compiling Python code using LLVM
