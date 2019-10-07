@@ -4,22 +4,20 @@
 #
 Name     : numba
 Version  : 0.45.1
-Release  : 33
+Release  : 34
 URL      : https://github.com/numba/numba/archive/0.45.1/numba-0.45.1.tar.gz
 Source0  : https://github.com/numba/numba/archive/0.45.1/numba-0.45.1.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-2-Clause Python-2.0
+License  : BSD-2-Clause
 Requires: numba-bin = %{version}-%{release}
 Requires: numba-license = %{version}-%{release}
 Requires: numba-python = %{version}-%{release}
 Requires: numba-python3 = %{version}-%{release}
-Requires: argparse
 Requires: funcsigs
 Requires: llvmlite
 Requires: numpy
 Requires: singledispatch
-BuildRequires : argparse
 BuildRequires : buildreq-distutils3
 BuildRequires : funcsigs
 BuildRequires : llvmlite
@@ -74,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564521967
+export SOURCE_DATE_EPOCH=1570481501
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -88,7 +86,6 @@ export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/numba
 cp LICENSE %{buildroot}/usr/share/package-licenses/numba/LICENSE
-cp LICENSES.third-party %{buildroot}/usr/share/package-licenses/numba/LICENSES.third-party
 cp buildscripts/condarecipe.local/license.txt %{buildroot}/usr/share/package-licenses/numba/buildscripts_condarecipe.local_license.txt
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
@@ -106,7 +103,6 @@ echo ----[ mark ]----
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/numba/LICENSE
-/usr/share/package-licenses/numba/LICENSES.third-party
 /usr/share/package-licenses/numba/buildscripts_condarecipe.local_license.txt
 
 %files python
