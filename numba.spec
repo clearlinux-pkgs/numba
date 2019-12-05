@@ -4,7 +4,7 @@
 #
 Name     : numba
 Version  : 0.46.0
-Release  : 35
+Release  : 36
 URL      : https://github.com/numba/numba/archive/0.46.0/numba-0.46.0.tar.gz
 Source0  : https://github.com/numba/numba/archive/0.46.0/numba-0.46.0.tar.gz
 Summary  : No detailed summary available
