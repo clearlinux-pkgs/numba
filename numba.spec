@@ -4,7 +4,7 @@
 #
 Name     : numba
 Version  : 0.47.0
-Release  : 38
+Release  : 39
 URL      : https://github.com/numba/numba/archive/0.47.0/numba-0.47.0.tar.gz
 Source0  : https://github.com/numba/numba/archive/0.47.0/numba-0.47.0.tar.gz
 Summary  : No detailed summary available
