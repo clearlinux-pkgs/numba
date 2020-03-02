@@ -4,10 +4,10 @@
 #
 Name     : numba
 Version  : 0.48.0
-Release  : 40
+Release  : 41
 URL      : https://github.com/numba/numba/archive/0.48.0/numba-0.48.0.tar.gz
 Source0  : https://github.com/numba/numba/archive/0.48.0/numba-0.48.0.tar.gz
-Summary  : No detailed summary available
+Summary  : compiling Python code using LLVM
 Group    : Development/Tools
 License  : BSD-2-Clause
 Requires: numba-bin = %{version}-%{release}
@@ -66,6 +66,7 @@ python components for the numba package.
 Summary: python3 components for the numba package.
 Group: Default
 Requires: python3-core
+Provides: pypi(numba)
 
 %description python3
 python3 components for the numba package.
@@ -80,7 +81,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1580227330
+export SOURCE_DATE_EPOCH=1583187760
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
