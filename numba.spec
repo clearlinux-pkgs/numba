@@ -4,12 +4,12 @@
 #
 Name     : numba
 Version  : 0.48.0
-Release  : 41
+Release  : 42
 URL      : https://github.com/numba/numba/archive/0.48.0/numba-0.48.0.tar.gz
 Source0  : https://github.com/numba/numba/archive/0.48.0/numba-0.48.0.tar.gz
 Summary  : compiling Python code using LLVM
 Group    : Development/Tools
-License  : BSD-2-Clause
+License  : Apache-2.0 BSD-2-Clause
 Requires: numba-bin = %{version}-%{release}
 Requires: numba-license = %{version}-%{release}
 Requires: numba-python = %{version}-%{release}
@@ -26,15 +26,11 @@ BuildRequires : numpy
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : singledispatch
+Patch1: support-newer-llvmlite.patch
 
 %description
-# DAG Roadmap
-This directory includes a representation of the Numba roadmap in the form of a
-DAG.  We have done this to enable a highly granular display of enhancements to
-Numba that also shows the relationships between these tasks. Many tasks have
-prerequisites, and we've found that issue trackers, Kanban boards, and
-time-bucketed roadmap documentation all fail to represent this information in
-different ways.
+This directory contains python script for benchmarking the performance of
+numba.
 
 %package bin
 Summary: bin components for the numba package.
@@ -67,6 +63,9 @@ Summary: python3 components for the numba package.
 Group: Default
 Requires: python3-core
 Provides: pypi(numba)
+Requires: pypi(llvmlite)
+Requires: pypi(numpy)
+Requires: pypi(setuptools)
 
 %description python3
 python3 components for the numba package.
@@ -75,18 +74,18 @@ python3 components for the numba package.
 %prep
 %setup -q -n numba-0.48.0
 cd %{_builddir}/numba-0.48.0
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583187760
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1587060703
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
@@ -96,6 +95,7 @@ export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/numba
 cp %{_builddir}/numba-0.48.0/LICENSE %{buildroot}/usr/share/package-licenses/numba/117656b1e78464bdd17abb947fa3152444c9e4bb
+cp %{_builddir}/numba-0.48.0/LICENSES.third-party %{buildroot}/usr/share/package-licenses/numba/235a0015cbb12a1d22208f4d776b384938a7acea
 cp %{_builddir}/numba-0.48.0/buildscripts/condarecipe.local/license.txt %{buildroot}/usr/share/package-licenses/numba/117656b1e78464bdd17abb947fa3152444c9e4bb
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
@@ -113,6 +113,7 @@ echo ----[ mark ]----
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/numba/117656b1e78464bdd17abb947fa3152444c9e4bb
+/usr/share/package-licenses/numba/235a0015cbb12a1d22208f4d776b384938a7acea
 
 %files python
 %defattr(-,root,root,-)
